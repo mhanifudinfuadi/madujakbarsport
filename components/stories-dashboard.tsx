@@ -1,6 +1,4 @@
-
-@'
-"use client"
+﻿"use client"
 
 import { useCallback, useEffect, useState } from "react"
 import { Send, RefreshCw, CalendarDays, UserRound, MessageSquare } from "lucide-react"
@@ -237,4 +235,4 @@ export default function StoriesDashboard() {
     </section>
   )
 }
-'@ | Set-Content -Encoding utf8 .\components\stories-dashboard.tsx
+
