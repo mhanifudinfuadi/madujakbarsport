@@ -1,128 +1,46 @@
 "use client"
 
+import { useState } from "react"
 import HeroSection from "../hero-section"
-import { TextGradientScroll } from "@/components/ui/text-gradient-scroll"
-import { Timeline } from "@/components/ui/timeline"
-import "./globals.css"
-import { StaggerTestimonials } from "@/components/ui/stagger-testimonials"
-import { motion } from "framer-motion"
-import SmoothScrollHero from "@/components/ui/smooth-scroll-hero"
-import Chatbot from "../components/chatbot"
+import StoriesDashboard, { StoriesForm } from "../components/stories-dashboard"
+import { Activity, ArrowUpRight, Bike, Dumbbell, Gamepad2, Goal, HeartHandshake, MoveUpRight, Send, Target, Trophy, Users, Waves } from "lucide-react"
+
+const sports = [
+  { name: "Badminton", detail: "Gerak cepat, rally seru, dan sportivitas.", icon: Activity, number: "01" },
+  { name: "Running", detail: "Satu langkah kecil, banyak cerita besar.", icon: MoveUpRight, number: "02" },
+  { name: "Panahan", detail: "Fokus pada target, tenang dalam proses.", icon: Target, number: "03" },
+  { name: "Futsal", detail: "Kerja sama tim sampai peluit akhir.", icon: Goal, number: "04" },
+  { name: "Tenis Lapangan", detail: "Strategi, stamina, dan permainan berkelas.", icon: Trophy, number: "05" },
+  { name: "Tenis Meja", detail: "Refleks cepat, kompetisi bersahabat.", icon: Waves, number: "06" },
+  { name: "e-Sport", detail: "Taktik digital, kolaborasi, dan fair play.", icon: Gamepad2, number: "07" },
+]
 
 export default function Page() {
-  const missionStatement =
-    "At Wadada Run Club, we believe movement isn't an option, it's a lifestyle. Born from the vibrant spirit of Jamaica, we unite runners from every corner of the globe who share our passion for pushing boundaries. Whether you're chasing sunrise through Kingston streets or conquering mountain trails, we're here to fuel your journey. Our community thrives on the rhythm of footsteps, the power of perseverance, and the joy of shared victories. Join us as we run not just for fitness, but for freedom, friendship, and the pure love of movement."
+  const [showForm, setShowForm] = useState(false)
+  return <main className="min-h-screen overflow-hidden bg-[#f7f8fa] text-[#12243a]">
+    <HeroSection />
 
-  const timelineEntries = [
-    {
-      id: 1,
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-RJ3iTXUn5SUexF6nHMZYhMoQLNCboK.png",
-      alt: "Woman runner in artistic motion blur",
-      title: "Every Step Counts",
-      description:
-        "From your first jog around the block to your hundredth marathon, every runner has a story. At Wadada, we celebrate beginners who are just lacing up their shoes for the first time. Your pace doesn't matter—your passion does. What are you waiting for?",
-      layout: "left" as const,
-    },
-    {
-      id: 2,
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LN9OPh9hw0b9rwSPRSslHoejcfoKHe.png",
-      alt: "Male runner with determination and focus",
-      title: "Find Your Rhythm",
-      description:
-        "Whether you're chasing personal records or simply chasing the sunrise, our community embraces every type of runner. From speed demons to mindful joggers, from trail blazers to track stars—there's a place for you here. The only question is: what are you waiting for?",
-      layout: "right" as const,
-    },
-    {
-      id: 3,
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1FdGyjVpWQANGzsDWpoPIvF5SVI2za.png",
-      alt: "Runner in dynamic motion showing strength and grace",
-      title: "Join the Movement",
-      description:
-        "Running isn't just about the miles—it's about the moments. The early morning conversations, the shared struggles, the collective victories. At Wadada Run Club, you're not just joining a group, you're joining a family. So lace up, step out, and discover what you're truly capable of. Seriously, what are you waiting for?",
-      layout: "left" as const,
-    },
-  ]
-
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <HeroSection />
-
-      {/* Mission Statement Section with Grid Background */}
-      <section id="mission" className="relative min-h-screen flex items-center justify-center py-20 bg-white">
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-subtle opacity-30 pointer-events-none" />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-black tracking-wider mb-12 text-gray-900">OUR MISSION</h2>
-            <TextGradientScroll
-              text={missionStatement}
-              className="text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-gray-800"
-              type="word"
-              textOpacity="soft"
-            />
-          </div>
+    <section id="mission" className="relative px-5 py-24 md:px-10 md:py-32">
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+        <div><p className="mb-5 text-xs font-bold uppercase tracking-[.28em] text-[#c18b38]">Our purpose · Tujuan bersama</p>
+          <h2 className="text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">LEBIH AKTIF.<br/><span className="text-[#164a7b]">LEBIH KOMPAK.</span></h2>
         </div>
-      </section>
+        <div className="border-l-2 border-[#d7a34c] pl-6 md:pl-9"><p className="text-xl leading-relaxed text-slate-700 md:text-2xl">Madu Jakbar Sport hadir sebagai rumah bagi semangat olahraga pegawai Madya Dua Jakarta Barat—ruang untuk bergerak, bertumbuh, menjaga kebugaran, dan mempererat kebersamaan lintas tim.</p><p className="mt-5 max-w-2xl text-base leading-7 text-slate-500">Bukan soal siapa yang paling cepat atau paling jago. Ini tentang konsistensi, sportivitas, saling mendukung, dan menciptakan cerita baik di setiap kegiatan.</p></div>
+      </div>
+      <div className="mx-auto mt-16 grid max-w-7xl grid-cols-2 gap-3 md:grid-cols-4"><div className="rounded-2xl bg-[#102b46] p-6 text-white"><Users className="mb-8"/><p className="text-2xl font-black">Satu unit</p><p className="mt-1 text-sm text-white/65">Banyak energi positif</p></div><div className="rounded-2xl border border-slate-200 bg-white p-6"><HeartHandshake className="mb-8 text-[#b78332]"/><p className="text-2xl font-black">Saling dukung</p><p className="mt-1 text-sm text-slate-500">Kompak di dalam dan luar lapangan</p></div><div className="rounded-2xl border border-slate-200 bg-white p-6"><Trophy className="mb-8 text-[#b78332]"/><p className="text-2xl font-black">Sportif</p><p className="mt-1 text-sm text-slate-500">Menang dengan rendah hati</p></div><div className="rounded-2xl bg-[#e7edf3] p-6"><Activity className="mb-8 text-[#164a7b]"/><p className="text-2xl font-black">Konsisten</p><p className="mt-1 text-sm text-slate-600">Sehat jadi kebiasaan</p></div></div>
+    </section>
 
-      {/* Timeline Section */}
-      <section id="community" className="relative py-20 bg-white">
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-subtle opacity-30 pointer-events-none" />
+    <section id="community" className="bg-[#102b46] px-5 py-24 text-white md:px-10 md:py-28">
+      <div className="mx-auto max-w-7xl"><div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="mb-4 text-xs font-bold uppercase tracking-[.28em] text-[#e0b56d]">Find your game · Temukan cabangmu</p><h2 className="text-4xl font-black tracking-tight md:text-6xl">ONE COMMUNITY.<br/><span className="text-[#e0b56d]">MANY WAYS TO PLAY.</span></h2></div><p className="max-w-md text-base leading-7 text-white/65">Dari lapangan sampai arena digital, setiap minat punya tempat. Kenali cabang olahraga yang menjadi bagian dari keluarga Madu Jakbar Sport.</p></div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{sports.map((sport) => { const Icon = sport.icon; return <article key={sport.name} className="group rounded-2xl border border-white/10 bg-white/[.045] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#e0b56d]/70 hover:bg-white/[.08]"><div className="mb-10 flex items-start justify-between"><span className="text-xs font-bold tracking-[.2em] text-[#e0b56d]">{sport.number}</span><Icon className="text-white/70 transition group-hover:text-[#e0b56d]" size={25}/></div><h3 className="text-2xl font-bold">{sport.name}</h3><p className="mt-2 text-sm leading-6 text-white/60">{sport.detail}</p></article> })}<article className="flex flex-col justify-between rounded-2xl bg-[#e0b56d] p-6 text-[#102b46]"><div><p className="text-xs font-black uppercase tracking-[.2em]">Punya ide kegiatan?</p><h3 className="mt-4 text-2xl font-black">Bikin gerakan berikutnya bareng-bareng.</h3></div><button onClick={() => document.querySelector("#join")?.scrollIntoView({behavior:"smooth"})} className="mt-8 flex items-center gap-2 self-start text-sm font-bold">Ikut berkontribusi <ArrowUpRight size={18}/></button></article></div>
+      </div>
+    </section>
 
-        <div className="relative z-10">
-          <div className="container mx-auto px-6 mb-16">
-            <div className="text-center">
-              <h2 className="text-4xl md:text-6xl font-black tracking-wider mb-6 text-gray-900">ALL RUNNERS WELCOME</h2>
-              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-                Every runner has a unique journey. Here are just a few stories from our inclusive community.
-              </p>
-            </div>
-          </div>
+    <section id="testimonials" className="px-5 py-24 md:px-10 md:py-28"><div className="mx-auto max-w-7xl"><div className="mb-14 max-w-3xl"><p className="mb-4 text-xs font-bold uppercase tracking-[.28em] text-[#b78332]">Voices of Madu · Suara kebersamaan</p><h2 className="text-4xl font-black tracking-tight md:text-6xl">CERITA DI BALIK<br/><span className="text-[#164a7b]">SETIAP KEGIATAN.</span></h2><p className="mt-6 text-lg leading-8 text-slate-600">Pesan pimpinan menjadi pengingat arah dan semangat bersama. Cerita anggota menjadi jejak kecil yang merangkai perjalanan komunitas kita.</p></div>
+        <div className="mb-12 grid gap-6 lg:grid-cols-[.75fr_1.25fr]"><div className="rounded-3xl bg-[#e8edf2] p-8 md:p-10"><div className="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-[#102b46] text-[#e0b56d]"><Trophy/></div><p className="text-xs font-bold uppercase tracking-[.2em] text-[#164a7b]">Pesan Kepala Unit Kerja</p><blockquote className="mt-5 text-2xl font-semibold leading-relaxed text-[#102b46]">“Semoga Madu Jakbar Sport menjadi ruang untuk menjaga kesehatan, memperkuat kebersamaan, dan menumbuhkan sportivitas. Terus bergerak, saling mendukung, dan bawa energi positif dalam setiap kegiatan.”</blockquote><p className="mt-7 text-sm font-bold text-slate-600">Kepala KPP Madya Dua Jakarta Barat</p><p className="mt-1 text-xs text-slate-500">Draf pesan — silakan konfirmasi redaksi resmi sebelum dipublikasikan.</p></div><div className="rounded-3xl border border-slate-200 bg-white p-7 md:p-10"><div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center"><div><p className="text-xs font-bold uppercase tracking-[.2em] text-[#b78332]">Community journal</p><h3 className="mt-2 text-2xl font-black">Kesan & pesan anggota</h3><p className="mt-2 max-w-lg text-sm leading-6 text-slate-500">Cerita singkat dari kegiatan yang sudah diikuti. Kiriman terbaru akan tampil di sini setelah sistem penyimpanan online dikonfigurasi.</p></div><button onClick={() => setShowForm(v => !v)} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#164a7b] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#102b46]"><Send size={16}/> {showForm ? "Tutup form" : "Tulis cerita"}</button></div>{showForm && <div className="mt-7"><StoriesForm /></div>}</div></div>
+        <StoriesDashboard />
+      </div></section>
 
-          <Timeline entries={timelineEntries} />
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="relative py-20 bg-white">
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 bg-grid-subtle opacity-30 pointer-events-none" />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-black tracking-wider text-gray-900 mb-6">
-              See what our{" "}
-              <span className="bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">RUNNERS</span>{" "}
-              say.
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
-              Real stories from real runners who found their stride with Wadada Run Club.
-            </p>
-          </motion.div>
-
-          <StaggerTestimonials />
-        </div>
-      </section>
-
-      {/* Smooth Scroll Hero with CTA Overlay */}
-      <section id="join" className="relative">
-        <SmoothScrollHero
-          scrollHeight={2500}
-          desktopImage="/images/runners-motion-blur.png"
-          mobileImage="/images/runners-motion-blur.png"
-          initialClipPercentage={30}
-          finalClipPercentage={70}
-        />
-      </section>
-      <Chatbot />
-    </div>
-  )
+    <section id="join" className="relative overflow-hidden bg-[#0a1d30] px-5 py-24 text-white md:px-10 md:py-32"><div className="pointer-events-none absolute -right-20 -top-28 h-96 w-96 rounded-full border border-white/10"/><div className="pointer-events-none absolute -right-2 -top-10 h-60 w-60 rounded-full border border-[#e0b56d]/30"/><div className="relative mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_auto] md:items-end"><div><p className="mb-5 text-xs font-bold uppercase tracking-[.3em] text-[#e0b56d]">Your move · Langkahmu dimulai di sini</p><h2 className="max-w-4xl text-5xl font-black leading-[.98] tracking-tight md:text-7xl">MOVE TOGETHER.<br/><span className="text-[#e0b56d]">GROW STRONGER.</span></h2><p className="mt-7 max-w-2xl text-lg leading-8 text-white/65">Jadi bagian dari cerita Madu Jakbar Sport. Ikuti kegiatan, dukung rekan, dan bagikan momen yang layak dikenang.</p></div><button onClick={() => { setShowForm(true); document.querySelector("#testimonials")?.scrollIntoView({behavior:"smooth"}) }} className="inline-flex items-center justify-center gap-3 rounded-full bg-[#e0b56d] px-7 py-4 font-black text-[#102b46] transition hover:bg-white">BAGIKAN CERITAMU <ArrowUpRight size={20}/></button></div><div className="relative mx-auto mt-20 flex max-w-7xl flex-col justify-between gap-4 border-t border-white/15 pt-6 text-xs tracking-wide text-white/45 md:flex-row"><span>MADU JAKBAR SPORT · KPP MADYA DUA JAKARTA BARAT</span><a href="#hero" className="hover:text-white">Kembali ke atas ↑</a><span>Sehat bersama. Kompak selamanya.</span></div></section>
+  </main>
 }
